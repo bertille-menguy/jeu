@@ -1,11 +1,41 @@
-[gd_scene load_steps=2 format=3 uid="uid://mwtb6bckx0sr"]
+[gd_scene load_steps=6 format=3 uid="uid://mwtb6bckx0sr"]
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_8pa0k"]
+[ext_resource type="Script" path="res://Gymnaste.gd" id="1_eiwij"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ejkjb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2jgwn"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_bad8p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88mos"]
+albedo_color = Color(0.996078, 0.827451, 0.701961, 1)
+disable_receive_shadows = true
 
 [node name="Praticable" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.000581026)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("WorldBoundaryShape3D_8pa0k")
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_ejkjb")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.849368, 0.527801, 0, -0.527801, 0.849368, -0.215706, 13.8462, 14.6674)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.955098, 0.296292, 0, -0.296292, 0.955098, 0, 6.17866, 17.9087)
+
+[node name="Gymnaste" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.164397, -0.0524647)
+script = ExtResource("1_eiwij")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Gymnaste"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63841, 0)
+shape = SubResource("BoxShape3D_2jgwn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Gymnaste"]
+transform = Transform3D(1, 0, 0, 0, 4, 0, 0, 0, 1, 0, 1.98187, 0.0524647)
+mesh = SubResource("BoxMesh_bad8p")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_88mos")
