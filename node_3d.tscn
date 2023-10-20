@@ -1,0 +1,74 @@
+[gd_scene load_steps=12 format=3 uid="uid://mwtb6bckx0sr"]
+
+[ext_resource type="Script" path="res://Gymnaste.gd" id="1_eiwij"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ejkjb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c45yq"]
+albedo_color = Color(0.87451, 0.803922, 0.741176, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8aho5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ryatv"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_usxmj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_56jrw"]
+albedo_color = Color(0.87451, 0.803922, 0.741176, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_661eh"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r2irf"]
+height = 3.77897
+
+[sub_resource type="BoxMesh" id="BoxMesh_bad8p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88mos"]
+albedo_color = Color(0.996078, 0.827451, 0.701961, 1)
+disable_receive_shadows = true
+
+[node name="SalleDeGR" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.000581026)
+
+[node name="Praticable" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Praticable"]
+shape = SubResource("WorldBoundaryShape3D_ejkjb")
+
+[node name="praticable" type="MeshInstance3D" parent="Praticable"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_c45yq")
+mesh = SubResource("PlaneMesh_8aho5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Praticable"]
+transform = Transform3D(8.5, 0, 0, 0, 8.5, 0, 0, 0, 8.5, 0, 0.0684962, 0)
+material_override = SubResource("StandardMaterial3D_ryatv")
+mesh = SubResource("PlaneMesh_usxmj")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Praticable"]
+transform = Transform3D(8.31, 0, 0, 0, 8.31, 0, 0, 0, 8.31, 0, 0.103386, 0)
+material_override = SubResource("StandardMaterial3D_56jrw")
+mesh = SubResource("PlaneMesh_661eh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.849368, 0.527801, 0, -0.527801, 0.849368, -0.215706, 26.8309, 16.681)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.90085, 0.434131, 0, -0.434131, 0.90085, 0.647729, 10.19, 17.4756)
+
+[node name="Gymnaste" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.58739, -0.0524647)
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+script = ExtResource("1_eiwij")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Gymnaste"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19711, 0)
+shape = SubResource("CapsuleShape3D_r2irf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Gymnaste"]
+transform = Transform3D(1, 0, 0, 0, 4, 0, 0, 0, 1, 0.017765, 0, 0)
+mesh = SubResource("BoxMesh_bad8p")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_88mos")
