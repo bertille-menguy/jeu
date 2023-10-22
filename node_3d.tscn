@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://mwtb6bckx0sr"]
+[gd_scene load_steps=17 format=3 uid="uid://mwtb6bckx0sr"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_c8ve8"]
 [ext_resource type="Script" path="res://Gymnaste.gd" id="1_eiwij"]
+[ext_resource type="Script" path="res://Cerceau.gd" id="3_imwty"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ejkjb"]
 
@@ -27,6 +28,13 @@ height = 3.77897
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88mos"]
 albedo_color = Color(0.996078, 0.827451, 0.701961, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6m38f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_blkwt"]
+albedo_color = Color(0.282353, 0.419608, 1, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_ktarm"]
 
 [node name="SalleDeGR" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.000581026)
@@ -112,6 +120,16 @@ offset_top = 28.0
 offset_right = 125.0
 offset_bottom = 48.0
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
+[node name="Cerceau" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.658951, 1.23872, 0)
+script = ExtResource("3_imwty")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cerceau"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.60603, 1.85884, 3.57432)
+shape = SubResource("SphereShape3D_6m38f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cerceau"]
+transform = Transform3D(-0.00106115, 0.0350928, 0.999384, -0.999543, -0.0302245, 0, 0.0302059, -0.998927, 0.0351088, 1.61668, 1.84713, 3.55118)
+material_override = SubResource("StandardMaterial3D_blkwt")
+mesh = SubResource("TorusMesh_ktarm")
+skeleton = NodePath("../..")
