@@ -8,7 +8,6 @@ func _process(delta):
 	
 	var v:int = (linear_velocity.length() * 100)
 	%Score.text = str(v)
-	
 	# Trigger the timer when user move
 	var timer := Timer.new()
 	add_child(timer)
@@ -38,7 +37,7 @@ func _physics_process(delta):
 		transform.origin.z = -23
 	if transform.origin.z > 23:
 		transform.origin.z = 23
-	
 
-	
-
+func _on_body_entered(body):
+	if body.is_in_group("cerceau"):
+		queue_free()

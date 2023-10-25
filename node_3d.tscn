@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://mwtb6bckx0sr"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_c8ve8"]
 [ext_resource type="Script" path="res://Gymnaste.gd" id="1_eiwij"]
+[ext_resource type="Script" path="res://Main.gd" id="1_wiaim"]
 [ext_resource type="Script" path="res://Cerceau.gd" id="3_imwty"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ejkjb"]
@@ -38,7 +38,7 @@ albedo_color = Color(0.282353, 0.419608, 1, 1)
 
 [node name="SalleDeGR" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.000581026)
-script = ExtResource("1_c8ve8")
+script = ExtResource("1_wiaim")
 
 [node name="Praticable" type="StaticBody3D" parent="."]
 
@@ -120,8 +120,8 @@ offset_top = 28.0
 offset_right = 125.0
 offset_bottom = 48.0
 
-[node name="Cerceau" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.658951, 1.23872, 0)
+[node name="Cerceau" type="RigidBody3D" parent="." groups=["cerceau"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.7453, -0.636479, 2.15744)
 script = ExtResource("3_imwty")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cerceau"]
